@@ -199,6 +199,9 @@ GEM
     regexp_parser (2.8.2)
     reline (0.4.1)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.2.6)
     rubocop (1.57.2)
       json (~> 2.3)
@@ -265,6 +268,7 @@ DEPENDENCIES
   rails (~> 7.0.5)
   react-rails (~> 2.7.1)
   redis (~> 4.0)
+  responders
   rubocop
   rubocop-rails
   shakapacker (~> 6.6.0)
