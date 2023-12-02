@@ -5,9 +5,9 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      render_notice("User was successfully created!")
+      render_notice("User was successfully created.")
     else
-      render_notice("Something went wrong! Please try again.")
+      render_error(user.errors.full_messages.to_sentence)
     end
   end
 

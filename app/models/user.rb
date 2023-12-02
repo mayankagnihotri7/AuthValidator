@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEX }, presence: true, unique: true
+  MIN_PASSWORD_LENGTH = 6
+
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
+  validates :password, length: { minimum: MIN_PASSWORD_LENGTH }, if: -> { password.present? }
+  validates :password_confirmation, presence: true, on: :create
 
   before_save :downcase_email
 
   has_secure_password
+  has_secure_token :authentication_token
 
   private
 
