@@ -12,6 +12,7 @@ const Input = ({
   disabled = false,
   required = true,
   className = "",
+  name = "",
 }) => (
   <div className="mt-6">
     {label && (
@@ -25,6 +26,7 @@ const Input = ({
     <div className="mt-1 rounded-md shadow-sm">
       <input
         disabled={disabled}
+        name={name}
         placeholder={placeholder}
         required={required}
         type={type}

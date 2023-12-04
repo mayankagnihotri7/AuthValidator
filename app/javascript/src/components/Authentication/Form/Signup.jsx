@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import Button from "components/Button";
 import Input from "components/Input";
 
+import CheckList from "./PasswordChecklist";
+
 const Signup = ({
   handleSubmit,
-  setName,
-  setEmail,
-  setPassword,
   loading,
-  setPasswordConfirmation,
+  handleChange,
+  formValues,
+  formErrors,
 }) => (
   <div
     className="flex items-center justify-center min-h-screen px-4
@@ -36,32 +37,41 @@ const Signup = ({
       </div>
       <form className="mt-8" onSubmit={handleSubmit}>
         <Input
-          label="Name"
-          placeholder="Oliver"
-          onChange={e => setName(e.target.value)}
-        />
-        <Input
           label="Email"
+          name="email"
           placeholder="oliver@example.com"
           type="email"
-          onChange={e => setEmail(e.target.value)}
+          value={formValues.email}
+          onChange={handleChange}
         />
+        {formErrors?.email && (
+          <span className="text-sm text-red-600">{formErrors["email"]}</span>
+        )}
         <Input
           label="Password"
+          name="password"
           placeholder="********"
           type="password"
-          onChange={e => setPassword(e.target.value)}
+          onChange={handleChange}
         />
+        {formValues.password.length >= 1 && (
+          <CheckList value={formValues.password} />
+        )}
         <Input
           label="Password Confirmation"
+          name="passwordConfirmation"
           placeholder="********"
           type="password"
-          onChange={e => setPasswordConfirmation(e.target.value)}
+          onChange={handleChange}
         />
+        {formErrors?.passwordConfirmation && (
+          <span className="text-sm text-red-600">
+            {formErrors["passwordConfirmation"]}
+          </span>
+        )}
         <Button buttonText="Register" loading={loading} type="submit" />
       </form>
     </div>
   </div>
 );
-
 export default Signup;

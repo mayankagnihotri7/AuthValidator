@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "*path", to: "home#index", via: :all
 
-  namespace :api do
+  namespace :api, defaults: { format: "json" } do
     namespace :v1 do
       resources :users, only: %i[index create]
     end
