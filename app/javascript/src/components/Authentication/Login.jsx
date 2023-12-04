@@ -26,11 +26,14 @@ const Login = () => {
     setLoading(true);
     try {
       const { email, password } = formValues;
-      const response = await authApi.login({ email, password });
+      const {
+        data: { user },
+      } = await authApi.login({ email, password });
+
       setToLocalStorage({
-        authToken: response.data.authentication_token,
+        authToken: user.authentication_token,
         email: email.toLowerCase(),
-        userId: response.data.id,
+        userId: user.id,
       });
       setAuthHeaders();
       setLoading(false);
