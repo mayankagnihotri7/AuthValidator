@@ -7,9 +7,9 @@ class Api::V1::SessionsController < ApplicationController
     @user = User.find_by!(email: login_params[:email].downcase)
     unless @user.authenticate(login_params[:password])
       render_error("Incorrect credentials, try again.", :unauthorized)
+    else
+      render json: { user: @user, notice: "Login successful." }
     end
-
-    render json: { user: @user, notice: "Login successful." }
   end
 
   private
