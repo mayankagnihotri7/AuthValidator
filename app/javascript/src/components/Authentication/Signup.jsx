@@ -70,7 +70,7 @@ const Signup = ({ history }) => {
           password: formValues.password,
           password_confirmation: formValues.passwordConfirmation,
         });
-        history.push("/");
+        history.push("/login");
       }
     } catch (error) {
       logger.error(error);
